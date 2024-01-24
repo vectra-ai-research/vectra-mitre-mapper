@@ -1,0 +1,30 @@
+from Modules.Navigator import BuildVectraMitreLayerInfo, CreateMitreLayerFile
+from Modules.BuildDatabase import BuildDatabase
+import os
+
+def InitializationFileCheck():
+    ###Check primary data files
+    parent_dir = os.path.abspath("")
+    if os.path.exists(parent_dir+"/Output") == False:
+        os.mkdir(parent_dir+"/Output")
+    
+    if os.path.exists(parent_dir+"/Output/Nav_Layers") == False:
+        os.mkdir(parent_dir+"/Output/Nav_Layers")
+
+    if os.path.exists(parent_dir+"/Tool_Data") == False:
+        os.mkdir(parent_dir+"/Tool_Data")
+
+    if os.path.exists(parent_dir+"/Tool_Data/DB") == False:
+        os.mkdir(parent_dir+"/Tool_Data/DB")
+    
+
+    
+    print("\nCheck: All primary files available!")
+
+    
+
+if __name__ == '__main__':
+    InitializationFileCheck()
+    BuildDatabase()
+    techniques = BuildVectraMitreLayerInfo()
+    CreateMitreLayerFile(techniques)
