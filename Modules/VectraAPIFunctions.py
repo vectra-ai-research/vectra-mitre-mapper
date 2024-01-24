@@ -11,39 +11,50 @@ request_url = tenant_url+"/api/v3.3"
 
 def RequestAccessToken():
     ###Do not modify this section###
-    request_url = tenant_url+"/oauth2/token"
-    basic_auth_token_encoded = base64.standard_b64encode((client_id+':'+client_secret).encode("ascii"))
-    basic_auth_token = basic_auth_token_encoded.decode("ascii")
-
-    payload='grant_type=client_credentials'
-    headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Accept': 'application/json',
-    'Authorization': 'Basic '+ basic_auth_token
-    }
-    ###___###
-
-    response = requests.request("POST", request_url, headers=headers, data=payload)
-
-    print(response.status_code)
-
-    if response.status_code == 200: 
-        structured_response = json.loads(response.text)
-        current_time = datetime.datetime.now()
-        access_token_expire_time = current_time + datetime.timedelta(seconds=structured_response['expires_in'])
-
-        #Update json with enriched information
-        structured_response.update({'access_token_expire_time':str(access_token_expire_time)})
-
-        #Update the config file with new token
-        with open('./config.json', 'w') as config_file:
-            json.dump(structured_response, config_file)
-        
-        return True
-
+    if "" in [client_id, client_secret, tenant_url]:
+        print("\nAuthentication credentials missing. \nAdd credentials to /Modules/APIAuth.py")
+        print("Exiting now!")
+        quit()
     else:
-        print(f"Response: {response.status_code}")
-        return False
+        try:
+            request_url = tenant_url+"/oauth2/token"
+            basic_auth_token_encoded = base64.standard_b64encode((client_id+':'+client_secret).encode("ascii"))
+            basic_auth_token = basic_auth_token_encoded.decode("ascii")
+            
+
+            payload='grant_type=client_credentials'
+            headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json',
+            'Authorization': 'Basic '+ basic_auth_token
+            }
+            ###___###
+
+            response = requests.request("POST", request_url, headers=headers, data=payload)
+
+            print(response.status_code)
+
+            if response.status_code == 200: 
+                structured_response = json.loads(response.text)
+                current_time = datetime.datetime.now()
+                access_token_expire_time = current_time + datetime.timedelta(seconds=structured_response['expires_in'])
+
+                #Update json with enriched information
+                structured_response.update({'access_token_expire_time':str(access_token_expire_time)})
+
+                #Update the config file with new token
+                with open('./config.json', 'w') as config_file:
+                    json.dump(structured_response, config_file)
+                
+                return True
+
+            else:
+                print(f"Response: {response.status_code}")
+                return False
+        except:
+            print("Invalid credentials provided. Check Modules/APIAuth.py")
+            print("Exiting now!")
+            quit()
 
 def UpdateGlobalAuthConfig():
     with open('./config.json', 'r') as config_file:
@@ -64,6 +75,7 @@ def UpdateGlobalAuthConfig():
 #This will trigger before every API call
 def CheckTokenValidity():
     current_time = datetime.datetime.now()
+
     with open('./config.json', 'r') as config_file:
         config = json.load(config_file)
 
@@ -204,11 +216,6 @@ def GetAllEntities(is_prioritized= None, severity = None):
             params['severity'] = severity
         else:
             pass
-
-        # if urgency_score in range(0,100):
-        #     params['urgency_score'] = urgency_score
-        # else:
-        #     pass
 
         #handle pagination
         page = 1

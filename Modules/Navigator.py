@@ -124,3 +124,5 @@ def CreateMitreLayerFile(techniques):
     #Convert back to json file
     with open(f"./Output/Nav_Layers/tenant_layer_{timestamp}.json", "w") as outfile:
         json.dump(basic_layer_info, outfile)
+
+    print("\nNavigator layer file available: /Output/Nav_Layers/")
