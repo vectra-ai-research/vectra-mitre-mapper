@@ -1,6 +1,7 @@
 venv/
 __pycache__/
 Modules/__pycache__
+Tool_Data/DB
 *.pyc
 *.pyo
 *.pyd
