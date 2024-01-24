@@ -43,7 +43,7 @@ def RequestAccessToken():
                 structured_response.update({'access_token_expire_time':str(access_token_expire_time)})
 
                 #Update the config file with new token
-                with open('./config.json', 'w') as config_file:
+                with open('./access.json', 'w') as config_file:
                     json.dump(structured_response, config_file)
                 
                 return True
@@ -57,7 +57,7 @@ def RequestAccessToken():
             quit()
 
 def UpdateGlobalAuthConfig():
-    with open('./config.json', 'r') as config_file:
+    with open('./access.json', 'r') as config_file:
         config = json.load(config_file)
     #Access token retrieved:
     access_token = config.get('access_token')
@@ -76,7 +76,7 @@ def UpdateGlobalAuthConfig():
 def CheckTokenValidity():
     current_time = datetime.datetime.now()
 
-    with open('./config.json', 'r') as config_file:
+    with open('./access.json', 'r') as config_file:
         config = json.load(config_file)
 
     access_token = config.get('access_token')

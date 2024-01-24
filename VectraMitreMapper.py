@@ -10,8 +10,8 @@ def InitializationFileCheck():
     if os.path.exists(parent_dir+"/Output") == False:
         os.mkdir(parent_dir+"/Output")
 
-    if os.path.isfile(parent_dir+"/config.json") == False:
-        with open(parent_dir+"/config.json", "w") as fp:
+    if os.path.isfile(parent_dir+"/access.json") == False:
+        with open(parent_dir+"/access.json", "w") as fp:
             pass
 
     if os.path.exists(parent_dir+"/Output/Nav_Layers") == False:
