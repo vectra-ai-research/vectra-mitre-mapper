@@ -62,7 +62,7 @@ def CreateMitreTechniquePhaseMapFile():
         json.dump(TechniqueToPhaseMapping(), outfile)
 
 
-def BuildVectraMitreLayerInfo():
+def BuildVectraMitreLayerInfo(access_token, request_url):
     '''Function to construct the techniques json for the MITRE layer file'''
     vectra_mitre_map_file = "./Resources/vectra_att&ck_v13-detection_to_technique.json"
 
@@ -78,7 +78,7 @@ def BuildVectraMitreLayerInfo():
             mitre_technique_to_phase_map = json.load(mitre_technique_to_phase_file)
 
     #Fetch latest detections from tenant
-    all_triggered_detections,unique_triggered_detections = ListAllDetections()
+    all_triggered_detections,unique_triggered_detections = ListAllDetections(access_token = access_token, request_url = request_url)
 
     tenant_mitre_map = {}
 
