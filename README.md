@@ -7,11 +7,17 @@ The utility levergaes Vectra SaaS API as the backbone which is used to connect a
 ## Usage
 
 1. Install tool requirements
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 2. Run VectraMitreMapper tool
-`python3 VectraMitreMapper.py "tenant_url.portal.vectra.ai" "client_id" "client_secret"`
+```
+python3 VectraMitreMapper.py "tenant_url.portal.vectra.ai" "client_id" "client_secret"
+```
 
 ### Generating Client Credentials
 
 To use the tool with a Vectra tenant, user will need to generate client credentials. This can be generated from the Vectra tenant directly by navigating to: 
-`Manage > API Clients > Add API Client > Generate Credentials`
+```
+Manage > API Clients > Add API Client > Generate Credentials
+```
