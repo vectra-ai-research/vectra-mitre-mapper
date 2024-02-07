@@ -2,10 +2,7 @@ venv/
 __pycache__/
 Modules/__pycache__
 Output/Nav_Layers
-Tool_Data/DB
 *.pyc
 *.pyo
 *.pyd
 .DS_Store
-access.json
-
