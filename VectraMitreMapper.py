@@ -23,6 +23,5 @@ if __name__ == '__main__':
     request_url = tenant_url+"/api/v3.3"
     InitializationFileCheck()
     access_token = RequestAccessToken(tenant_url, client_id, client_secret)
-    # BuildDatabase(access_token=access_token, tenant_url = tenant_url)
-    techniques = BuildVectraMitreLayerInfo(access_token = access_token, request_url = request_url)
-    CreateMitreLayerFile(techniques)
+    techniques, total_triggered_techniques = BuildVectraMitreLayerInfo(access_token = access_token, request_url = request_url)
+    CreateMitreLayerFile(techniques, total_triggered_techniques, tenant_url)
