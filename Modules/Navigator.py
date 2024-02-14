@@ -62,7 +62,7 @@ def CreateMitreTechniquePhaseMapFile():
         json.dump(TechniqueToPhaseMapping(), outfile)
 
 
-def CreateMitreLayerFile(techniques, total_triggered_techniques, tenant_url):
+def CreateMitreLayerFile(layer_name, techniques, total_triggered_techniques, tenant_url):
     basic_layer_file = "./Resources/basic_layer_structure.json"
 
     all_mitre_techniques = GetTechniques(x_mitre_is_subtechnique = False, revoked_n_deprecated=False)
@@ -83,7 +83,7 @@ def CreateMitreLayerFile(techniques, total_triggered_techniques, tenant_url):
     basic_layer_info["techniques"] = techniques
 
     # Add layer name
-    basic_layer_info["name"] = "Vectra MITRE Detection Map"
+    basic_layer_info["name"] = layer_name
 
     # Add sorting
     basic_layer_info["sorting"] = 3
@@ -92,7 +92,8 @@ def CreateMitreLayerFile(techniques, total_triggered_techniques, tenant_url):
     basic_layer_info["description"] = f"Total Coverage : 109 , Detected : {total_triggered_techniques}"
 
     #Add link to vectra tenant
-    basic_layer_info["links"].append({"label" : "Vectra Tenant Link", "url" : tenant_url})
+    detections_url = tenant_url+"/detections"
+    basic_layer_info["links"].append({"label" : "Vectra Tenant Link", "url" : detections_url})
 
     # Add row background color
     basic_layer_info["showTacticRowBackground"] = True
@@ -106,10 +107,10 @@ def CreateMitreLayerFile(techniques, total_triggered_techniques, tenant_url):
 
     timestamp = int(time.time())
     # Convert back to json file
-    with open(f"./Output/Nav_Layers/tenant_layer_{timestamp}.json", "w") as outfile:
+    with open(f"./Output/Vectra_Coverage_{timestamp}.json", "w") as outfile:
         json.dump(basic_layer_info, outfile)
 
-    print("\nNavigator layer file available: /Output/Nav_Layers/")
+    print("\nNavigator layer file available: /Output/")
 
 def BuildVectraMitreLayerInfo(access_token, request_url):
     '''Function to construct the techniques json for the MITRE layer file'''

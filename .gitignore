@@ -1,7 +1,7 @@
 venv/
 __pycache__/
 Modules/__pycache__
-Output/Nav_Layers
+Output/*
 *.pyc
 *.pyo
 *.pyd

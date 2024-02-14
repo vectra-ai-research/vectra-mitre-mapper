@@ -4,15 +4,18 @@ Vectra MITRE Mapper is a utility tool made available to allow Vectra platform us
 
 The utility levergaes Vectra SaaS API as the backbone which is used to connect and request detection information from the tenant. The tool also leverges MITRE Enterprise v14.1 (in current release) STIX data.
 
-## Usage
+## Setup
 
-1. Install tool requirements
+1. Install tool
 ```
+git clone git@github.com:vectra-ai-research/vectra-mitre-mapper.git
+cd vectra-mitre-mapper
+python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ```
-2. Run VectraMitreMapper tool
+2. Generate MITRE Coverage Layer
 ```
-python3 VectraMitreMapper.py "tenant_url.portal.vectra.ai" "client_id" "client_secret"
+python3 VectraMitreMapper.py "tenant_url.portal.vectra.ai" "client_id" "client_secret" "optional_layer_name"
 ```
 
 ### Generating Client Credentials
