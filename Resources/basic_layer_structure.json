@@ -1,17 +1,17 @@
 {
 	"name": "layer",
 	"versions": {
-		"attack": "14",
-		"navigator": "4.9.1",
+		"attack": "15",
+		"navigator": "5.0.1",
 		"layer": "4.5"
 	},
 	"domain": "enterprise-attack",
 	"description": "",
 	"filters": {
 		"platforms": [
+			"Windows",
 			"Linux",
 			"macOS",
-			"Windows",
 			"Network",
 			"PRE",
 			"Containers",
