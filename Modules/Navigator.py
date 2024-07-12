@@ -5,7 +5,7 @@ from stix2 import Filter
 from .BaseMitreFunctions import *
 
 #Load the latest mitre data to memory
-mitre_data_ent_latest = get_attack_version("enterprise-attack", "14.0")
+mitre_data_ent_latest = get_attack_version("enterprise-attack", "15.1")
 
 def GetTechniques(mitre_data = mitre_data_ent_latest, x_mitre_platform = None, name = None, x_mitre_is_subtechnique = "All",revoked_n_deprecated=None):
     """Queries and return Technique information based on specified parameters. If no parameters are supplied, the function returns all Techniques in latest enterprise matrix"""
@@ -89,7 +89,7 @@ def CreateMitreLayerFile(layer_name, techniques, total_triggered_techniques, ten
     basic_layer_info["sorting"] = 3
 
     # Add layer description
-    basic_layer_info["description"] = f"Total Coverage : 109 , Detected : {total_triggered_techniques}"
+    basic_layer_info["description"] = f"Total Coverage : 112 , Detected : {total_triggered_techniques}"
 
     #Add link to vectra tenant
     detections_url = tenant_url+"/detections"
@@ -114,7 +114,7 @@ def CreateMitreLayerFile(layer_name, techniques, total_triggered_techniques, ten
 
 def BuildVectraMitreLayerInfo(access_token, request_url):
     '''Function to construct the techniques json for the MITRE layer file'''
-    vectra_mitre_map_file = "./Resources/vectra_att&ck_v13-detection_to_technique.json"
+    vectra_mitre_map_file = "./Resources/vectra_att&ck_v15-detection_to_technique.json"
 
     mitre_technique_to_phase_map_file = "./Resources/Mitre_Technique_To_Phase_Map.json"
 
