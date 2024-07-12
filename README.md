@@ -15,12 +15,12 @@ pip install -r requirements.txt
 ```
 2. Generate MITRE Coverage Layer
 ```
-python3 VectraMitreMapper.py "tenant_url.portal.vectra.ai" "client_id" "client_secret" "optional_layer_name"
+python3 VectraMitreMapper.py "https://tenant_url.portal.vectra.ai" "client_id" "client_secret" "optional_layer_name"
 ```
 
 ### Generating Client Credentials
 
 To use the tool with a Vectra tenant, user will need to generate client credentials. This can be generated from the Vectra tenant directly by navigating to: 
 ```
-Manage > API Clients > Add API Client > Generate Credentials
+Manage > API Clients > Add API Client > Select Role : "Security Analyst" > Generate Credentials
 ```
