@@ -6,3 +6,5 @@ Output/*
 *.pyo
 *.pyd
 .DS_Store
+app.log
+tokens.pickle
