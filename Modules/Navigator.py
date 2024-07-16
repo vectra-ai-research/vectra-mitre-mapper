@@ -112,7 +112,7 @@ def CreateMitreLayerFile(layer_name, techniques, total_triggered_techniques, ten
 
     print("\nNavigator layer file available: /Output/")
 
-def BuildVectraMitreLayerInfo(access_token, request_url):
+def BuildVectraMitreLayerInfo(auth, request_url, detection_by=None, id = None, state = None):
     '''Function to construct the techniques json for the MITRE layer file'''
     vectra_mitre_map_file = "./Resources/vectra_att&ck_v15-detection_to_technique.json"
 
@@ -125,7 +125,7 @@ def BuildVectraMitreLayerInfo(access_token, request_url):
             vectra_mitre_map = json.load(vectra_mitre_file)
 
     #Fetch latest detections from tenant
-    all_triggered_detections,unique_triggered_detections = ListAllDetections(access_token = access_token, request_url = request_url)
+    all_triggered_detections,unique_triggered_detections = ListAllDetections(auth, request_url = request_url, detection_by = detection_by, id = id, state = state)
 
     tenant_mitre_map = {}
 
